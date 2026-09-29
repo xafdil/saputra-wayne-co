@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { backendlessAPI } from "../../api/backendless";
 import banner from "../../assets/images/hero-banner5.jpg";
+import BlogCard from "./BlogCard";
 
 interface Blog {
   objectId: string;
@@ -83,22 +84,6 @@ const BlogList = () => {
             </div>
           </div>
         </section>
-        <section className="border-b border-gray-200">
-          <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-            <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-gray-500">
-              Blogs
-            </p>
-
-            <h1 className="max-w-4xl text-5xl font-semibold leading-tight tracking-tight md:text-6xl lg:text-7xl">
-              Ideas shaping the future of business.
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-gray-600">
-              Articles, market insights, and strategic thinking from the team at
-              Saputra-Wayne Co.
-            </p>
-          </div>
-        </section>
 
         {/* SEARCH */}
         <section className="border-b border-gray-200 bg-gray-50">
@@ -176,8 +161,6 @@ const BlogList = () => {
             {/* BLOG GRID */}
             <section>
               <div className="mx-auto max-w-7xl px-6 py-20">
-                
-
                 {filteredBlogs.length === 0 ? (
                   <div className="rounded-2xl border border-gray-200 p-12 text-center">
                     <p className="text-gray-500">
@@ -187,31 +170,14 @@ const BlogList = () => {
                 ) : (
                   <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {filteredBlogs.map((blog) => (
-                      <article
+                      <BlogCard
                         key={blog.objectId}
-                        className="group rounded-3xl border border-gray-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                        <h3 className="text-2xl font-semibold tracking-tight transition group-hover:opacity-70">
-                          {blog.title}
-                        </h3>
-
-                        <p className="mt-5 line-clamp-3 leading-7 text-gray-600">
-                          {blog.excerpt}
-                        </p>
-
-                        <div className="mt-8 border-t border-gray-100 pt-5 text-sm text-gray-500">
-                          <p>{blog.author}</p>
-                          <p className="mt-1">
-                            {new Date(blog.publishDate).toLocaleDateString(
-                              "en-US",
-                              {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              },
-                            )}
-                          </p>
-                        </div>
-                      </article>
+                        id={blog.objectId}
+                        title={blog.title}
+                        excerpt={blog.excerpt}
+                        author={blog.author}
+                        publishDate={blog.publishDate}
+                      />
                     ))}
                   </div>
                 )}
