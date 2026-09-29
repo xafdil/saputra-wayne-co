@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "The Seasons";
+  src: url("./assets/fonts/the-seasons.woff2") format("woff2");
+  font-weight: 400;
+}
+
+html {
+  scroll-behavior: smooth;
+}
